@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rohax.cc — index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f7f7f5;
+    --bg-alt: #ffffff;
+    --panel: #ffffff;
+    --panel-hover: #f1f1ee;
+    --border: #e4e4e0;
+    --border-soft: #ececea;
+    --text: #17181b;
+    --text-dim: #63666e;
+    --text-faint: #9b9ea5;
+    --accent: #0072e0;
+    --accent-bg: #e3f0ff;
+    --accent-strong: #0058b0;
+    --amber: #b56a12;
+    --amber-bg: #fbedd9;
+    --tool: #4d5a8f;
+    --tool-bg: #e9ecfb;
+    --discord: #5865F2;
+    --radius: 14px;
+    --shadow: 0 1px 2px rgba(20,20,20,0.04), 0 1px 10px rgba(20,20,20,0.03);
+    --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  }
+  html[data-theme="dark"]{
+    --bg: #16181f;
+    --bg-alt: #1b1e26;
+    --panel: #21242e;
+    --panel-hover: #292d38;
+    --border: #323644;
+    --border-soft: #292d38;
+    --text: #edeef0;
+    --text-dim: #a3a6ad;
+    --text-faint: #6c6f77;
+    --accent: #4fa0ff;
+    --accent-bg: rgba(79,160,255,0.14);
+    --accent-strong: #4fa0ff;
+    --amber: #f2a93b;
+    --amber-bg: rgba(242,169,59,0.12);
+    --tool: #9aa4f2;
+    --tool-bg: rgba(154,164,242,0.12);
+    --shadow: none;
+  }
+  *, *::before, *::after{
+    transition: background-color .35s ease, border-color .35s ease, color .35s ease, fill .35s ease, box-shadow .35s ease;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    min-height: 100vh;
+    padding: 0 0 80px;
+    transition: background-color .35s ease, border-color .35s ease, color .35s ease;
+  }
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- top bar ---------- */
+  header{
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-alt);
+    position: sticky; top:0; z-index: 20;
+    transition: box-shadow .2s ease, border-color .35s ease, background-color .35s ease, color .35s ease;
+  }
+  header.scrolled{
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .header-inner{
+    max-width: min(1440px, 88vw);
+    margin: 0 auto;
+    padding: 16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap: 9px;
+    cursor: pointer;
+  }
+  .logo-mark{
+    width: 34px; height: 34px;
+    flex-shrink: 0;
+  }
+  .logo-mark svg{ width: 100%; height: 100%; display:block; }
+  .logo-text{
+    display:flex;
+    align-items:baseline;
+    gap: 1px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  .logo-text .domain{ color: var(--text); }
+  .logo-text .tld{ color: var(--text-faint); font-weight: 500; }
+
+  .header-right{ display:flex; align-items:center; gap: 10px; }
+
+  nav{ display:flex; gap: 22px; font-size: 14px; color: var(--text-dim); margin-right: 8px; }
+  nav a:hover{ color: var(--accent); }
+  nav a.active{ color: var(--text); font-weight: 600; }
+
+  .icon-btn{
+    width: 36px; height: 36px;
+    display:flex; align-items:center; justify-content:center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: background-color .2s ease, color .2s ease, border-color .35s ease, transform .15s ease;
+  }
+  .icon-btn:hover{ background: var(--panel-hover); color: var(--text); }
+  .icon-btn:active{ transform: scale(0.92); }
+  .icon-btn svg{ width: 17px; height: 17px; overflow: visible; }
+  #theme-icon{
+    transition: transform .3s ease, opacity .3s ease;
+  }
+  #theme-icon.spin{ transform: rotate(90deg) scale(0.4); opacity: 0; }
+
+  .discord-btn{
+    display:flex; align-items:center; gap: 8px;
+    background: var(--discord);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 600;
+    padding: 0 14px;
+    height: 36px;
+    border-radius: 8px;
+    transition: filter .12s ease, background-color .35s ease, transform .15s ease;
+  }
+  .discord-btn:hover{ filter: brightness(1.08); }
+  .discord-btn:active{ transform: scale(0.96); }
+  .discord-btn svg{ width: 17px; height: 17px; flex-shrink:0; }
+
+  /* ---------- hero / search ---------- */
+  .hero{
+    position: relative;
+    max-width: min(1440px, 88vw);
+    margin: 0 auto;
+    padding: 56px 24px 32px;
+    overflow: hidden;
+  }
+  .hero-glow{
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    opacity: 0.14;
+    filter: blur(10px);
+    pointer-events: none;
+    animation: drift 9s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes drift{
+    0%, 100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(-24px, 20px) scale(1.08); }
+  }
+  .hero > *{ position: relative; z-index: 1; }
+
+  @keyframes fadeInUp{
+    from{ opacity: 0; transform: translateY(14px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow{
+    color: var(--accent-strong);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeInUp .5s ease forwards;
+  }
+  .hero h1{
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeInUp .5s ease forwards .08s;
+  }
+  .hero h1 .accent{ color: var(--accent); }
+  .hero p{
+    color: var(--text-dim);
+    max-width: 560px;
+    font-size: 15px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeInUp .5s ease forwards .16s;
+  }
+
+  .stats-row{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 28px;
+    opacity: 0;
+    animation: fadeInUp .5s ease forwards .32s;
+  }
+  .stat{ display:flex; align-items:baseline; gap: 7px; }
+  .stat .num{ font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--text); }
+  .stat .label{ font-size: 12.5px; color: var(--text-faint); }
+
+  .searchbar{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 4px 6px 4px 16px;
+    box-shadow: var(--shadow);
+    max-width: 560px;
+  }
+  .searchbar svg{ width: 18px; height: 18px; color: var(--text-faint); flex-shrink:0; }
+  .searchbar input{
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    padding: 10px 0;
+  }
+  .searchbar input::placeholder{ color: var(--text-faint); }
+
+  /* ---------- layout: sidebar + list ---------- */
+  .layout{
+    display:flex;
+    align-items:flex-start;
+    gap: 40px;
+    max-width: min(1440px, 88vw);
+    margin: 0 auto;
+    padding: 30px 24px 0;
+  }
+
+  .sidebar{
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 88px;
+  }
+  .sidebar-label{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 10px;
+  }
+  .sidebar-item{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dim);
+    cursor: pointer;
+    margin-bottom: 2px;
+  }
+  .sidebar-item svg, .sidebar-item img{ width: 16px; height: 16px; flex-shrink: 0; }
+  .sidebar-item:hover:not(.active){ background: var(--panel-hover); color: var(--text); }
+  .sidebar-item.active{
+    background: var(--accent-bg);
+    color: var(--accent-strong);
+    font-weight: 600;
+  }
+  .sidebar-divider{
+    height: 1px;
+    background: var(--border);
+    margin: 16px 0;
+  }
+  .sidebar-item.executors-item svg{ color: var(--amber); }
+  .sidebar-item.executors-item.active{
+    background: var(--amber-bg);
+    color: var(--amber);
+  }
+
+  .content{ flex: 1; min-width: 0; }
+  .content-head{
+    display:flex;
+    align-items:baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 12px;
+  }
+  .content-head h2{
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+  }
+  .content-head .count-label{ font-size: 13px; color: var(--text-faint); white-space: nowrap; }
+
+  .item-list{
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--panel);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .item-row{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border-soft);
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeInUp .35s ease forwards;
+  }
+  .item-row:last-child{ border-bottom: none; }
+  .item-row:hover{ background: var(--panel-hover); }
+
+  .item-icon{
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .item-icon svg{ width: 20px; height: 20px; color: #fff; }
+
+  .item-main{ flex: 1; min-width: 0; }
+  .item-title-row{
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 3px;
+  }
+  .item-name{ font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--text); }
+  .item-badge{
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .item-badge.verified{ background: var(--accent-bg); color: var(--accent-strong); }
+  .item-badge.new{ background: var(--amber-bg); color: var(--amber); }
+  .item-desc{
+    font-size: 13px;
+    color: var(--text-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .item-meta{
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-faint);
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+  .item-meta .game-name{ color: var(--text-dim); font-weight: 500; }
+
+  .item-dl{
+    display:flex; align-items:center; gap: 6px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    transition: filter .12s ease;
+  }
+  .item-dl:hover{ filter: brightness(1.08); }
+  .item-dl svg{ width: 14px; height: 14px; }
+
+  .empty-state{
+    text-align:center;
+    padding: 60px 20px;
+    color: var(--text-faint);
+    display:none;
+  }
+  .empty-state.show{ display:block; }
+  .empty-state .glyph{ font-size: 28px; margin-bottom: 10px; }
+  .empty-state .title{ color: var(--text); font-weight: 600; margin-bottom: 4px; }
+
+  footer{
+    max-width: min(1440px, 88vw);
+    margin: 60px auto 0;
+    padding: 20px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-faint);
+    font-size: 12.5px;
+    display:flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 768px){
+    nav{ display:none; }
+    .layout{ flex-direction: column; }
+    .sidebar{
+      width: 100%;
+      position: static;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .sidebar-label{ width: 100%; }
+    .sidebar-divider{ display: none; }
+    .item-row{ flex-wrap: wrap; }
+    .item-meta{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#" aria-label="rohax.cc home">
+      <span class="logo-mark">
+        <svg viewBox="0 0 44 44" fill="none">
+          <rect x="7" y="7" width="30" height="30" rx="9" transform="rotate(18 22 22)" fill="var(--accent)"/>
+          <text x="22" y="27" text-anchor="middle" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="13" letter-spacing="0.3" fill="#ffffff">RHX</text>
+        </svg>
+      </span>
+      <span class="logo-text"><span class="domain">rohax</span><span class="tld">.cc</span></span>
+    </a>
+    <div class="header-right">
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+      </nav>
+      <a class="discord-btn" href="__PLACEHOLDER_DISCORD_URL__" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 127.14 96.36" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+        Join Discord
+      </a>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-eyebrow">FREE &amp; LEGAL DOWNLOADS</div>
+  <h1>Find what you're <span class="accent">looking for</span>.</h1>
+  <p>A simple, searchable index of free assets, plugins, and tools for Roblox and other games. Pick a category, browse, and download — no strings attached.</p>
+
+  <div class="searchbar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="search" placeholder="Search by name or description..." autocomplete="off">
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><span class="num" id="stat-count">__PLACEHOLDER_ENTRY_COUNT__</span><span class="label">items indexed</span></div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-label">Tools</div>
+    <div id="sidebar-tools"></div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-label">Scripts</div>
+    <div id="sidebar-list"></div>
+  </aside>
+
+  <div class="content">
+    <div class="content-head">
+      <h2 id="content-title">Latest Updates</h2>
+      <span class="count-label" id="count-label"></span>
+    </div>
+    <div class="item-list" id="listing"></div>
+    <div class="empty-state" id="empty">
+      <div class="glyph">🔍</div>
+      <div class="title">No results found</div>
+      <div>Try a different search term or category.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>rohax.cc — __PLACEHOLDER_FOOTNOTE__</span>
+  <span>__PLACEHOLDER_ENTRY_COUNT__ items indexed</span>
+</footer>
+
+<script>
+  // ---------------------------------------------------------------
+  // PLACEHOLDER DATA — replace with your real content.
+  // "game"     : name of the game/category (drives the sidebar filter)
+  // "name"     : name of the asset/plugin/tool
+  // "desc"     : short one-line description
+  // "tag"      : "asset" | "plugin" | "tool" (controls icon color)
+  // "verified" : true/false — shows a "Verified" badge
+  // "isNew"    : true/false — shows a "New" badge
+  // "updated"  : display text, e.g. "Updated 2h ago" (placeholder)
+  // "url"      : download / destination link
+  // ---------------------------------------------------------------
+  const ENTRIES = [
+    { game: "Roblox", name: "__PLACEHOLDER_NAME_1__", desc: "__PLACEHOLDER_DESC_1__", tag: "asset",  verified: true,  isNew: true,  updated: "__PLACEHOLDER_UPDATED_1__", url: "__PLACEHOLDER_URL_1__" },
+    { game: "Roblox", name: "__PLACEHOLDER_NAME_2__", desc: "__PLACEHOLDER_DESC_2__", tag: "plugin", verified: true,  isNew: false, updated: "__PLACEHOLDER_UPDATED_2__", url: "__PLACEHOLDER_URL_2__" },
+    { game: "Roblox", name: "__PLACEHOLDER_NAME_3__", desc: "__PLACEHOLDER_DESC_3__", tag: "tool",   verified: false, isNew: false, updated: "__PLACEHOLDER_UPDATED_3__", url: "__PLACEHOLDER_URL_3__" },
+    { game: "Minecraft", name: "__PLACEHOLDER_NAME_4__", desc: "__PLACEHOLDER_DESC_4__", tag: "asset", verified: true,  isNew: false, updated: "__PLACEHOLDER_UPDATED_4__", url: "__PLACEHOLDER_URL_4__" },
+    { game: "Minecraft", name: "__PLACEHOLDER_NAME_5__", desc: "__PLACEHOLDER_DESC_5__", tag: "tool",  verified: false, isNew: true,  updated: "__PLACEHOLDER_UPDATED_5__", url: "__PLACEHOLDER_URL_5__" },
+  ];
+
+  // Separate list for the "Executors" tools section (kept apart from the
+  // per-game filters above). Same field shape as ENTRIES.
+  const EXECUTOR_ENTRIES = [
+    { game: "Executors", name: "__PLACEHOLDER_EXECUTOR_NAME_1__", desc: "__PLACEHOLDER_EXECUTOR_DESC_1__", tag: "tool", verified: true,  isNew: true,  updated: "__PLACEHOLDER_EXECUTOR_UPDATED_1__", url: "__PLACEHOLDER_EXECUTOR_URL_1__" },
+    { game: "Executors", name: "__PLACEHOLDER_EXECUTOR_NAME_2__", desc: "__PLACEHOLDER_EXECUTOR_DESC_2__", tag: "tool", verified: false, isNew: false, updated: "__PLACEHOLDER_EXECUTOR_UPDATED_2__", url: "__PLACEHOLDER_EXECUTOR_URL_2__" },
+  ];
+
+  // Icon background color per tag, and a neutral generic glyph (not a brand logo)
+  const TAG_COLOR = { asset: "var(--accent)", plugin: "var(--amber)", tool: "var(--tool)" };
+  const ITEM_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>';
+
+  // Simple generic game glyphs (not official brand logos — swap in your own
+  // licensed icon files here if you have them, e.g. GAME_ICONS.Roblox = '<img src="/icons/roblox.svg">')
+  const GAME_ICONS = {
+    "Roblox": '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="9" width="7" height="7" transform="rotate(-12 6.5 12.5)"/><rect x="14" y="8" width="7" height="7" transform="rotate(18 17.5 11.5)"/></svg>',
+    "Minecraft": '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8" opacity="0.55"/><rect x="3" y="13" width="8" height="8" opacity="0.55"/><rect x="13" y="13" width="8" height="8"/></svg>',
+  };
+
+  // Icon for the standalone "Executors" tools filter
+  const EXECUTORS_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>';
+
+  const DOWNLOAD_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+  const SUN_ICON = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>';
+  const MOON_ICON = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+
+  let activeFilter = "all";
+  let searchTerm = "";
+
+  function uniqueGames(){
+    return [...new Set(ENTRIES.map(e => e.game))];
+  }
+
+  function renderFilters(){
+    const games = uniqueGames();
+    const wrap = document.getElementById("sidebar-list");
+    wrap.innerHTML = "";
+
+    const allItem = document.createElement("div");
+    allItem.className = "sidebar-item" + (activeFilter === "all" ? " active" : "");
+    allItem.textContent = "All Items";
+    allItem.onclick = () => { activeFilter = "all"; render(); };
+    wrap.appendChild(allItem);
+
+    games.forEach(g => {
+      const item = document.createElement("div");
+      item.className = "sidebar-item" + (activeFilter === g ? " active" : "");
+      item.innerHTML = (GAME_ICONS[g] || "") + `<span>${g}</span>`;
+      item.onclick = () => { activeFilter = g; render(); };
+      wrap.appendChild(item);
+    });
+  }
+
+  // Renders the separate "Tools" group in the sidebar (kept apart from Games)
+  function renderToolsFilter(){
+    const wrap = document.getElementById("sidebar-tools");
+    wrap.innerHTML = "";
+
+    const item = document.createElement("div");
+    item.className = "sidebar-item executors-item" + (activeFilter === "Executors" ? " active" : "");
+    item.innerHTML = EXECUTORS_ICON + `<span>Executors</span>`;
+    item.onclick = () => { activeFilter = "Executors"; render(); };
+    wrap.appendChild(item);
+  }
+
+  function filteredEntries(){
+    // "Executors" is its own separate pool, not mixed with the per-game list
+    const pool = activeFilter === "Executors" ? EXECUTOR_ENTRIES : ENTRIES;
+    return pool.filter(e => {
+      const matchesGame = activeFilter === "all" || activeFilter === "Executors" || e.game === activeFilter;
+      const haystack = (e.name + " " + e.desc + " " + e.game).toLowerCase();
+      const matchesSearch = haystack.includes(searchTerm.toLowerCase());
+      return matchesGame && matchesSearch;
+    });
+  }
+
+  function renderListing(){
+    const listing = document.getElementById("listing");
+    const empty = document.getElementById("empty");
+    const countLabel = document.getElementById("count-label");
+    const title = document.getElementById("content-title");
+    const entries = filteredEntries();
+    listing.innerHTML = "";
+
+    title.textContent = activeFilter === "Executors" ? "Executors" : "Latest Updates";
+    countLabel.textContent = `Showing ${entries.length} active item${entries.length === 1 ? "" : "s"}`;
+
+    if (entries.length === 0){
+      empty.classList.add("show");
+      listing.style.display = "none";
+      return;
+    }
+    empty.classList.remove("show");
+    listing.style.display = "block";
+
+    entries.forEach((e, i) => {
+      const row = document.createElement("a");
+      row.className = "item-row";
+      row.href = e.url;
+      row.target = "_blank";
+      row.rel = "noopener noreferrer";
+      row.style.animationDelay = (i * 0.04) + "s";
+
+      const badges = [
+        e.verified ? `<span class="item-badge verified">Verified</span>` : "",
+        e.isNew ? `<span class="item-badge new">New</span>` : "",
+      ].join("");
+
+      row.innerHTML = `
+        <span class="item-icon" style="background:${TAG_COLOR[e.tag] || "var(--tool)"}">${ITEM_ICON}</span>
+        <span class="item-main">
+          <span class="item-title-row">
+            <span class="item-name">${e.name}</span>
+            ${badges}
+          </span>
+          <span class="item-desc">${e.desc}</span>
+        </span>
+        <span class="item-meta">
+          <div class="game-name">${e.game}</div>
+          <div>${e.updated}</div>
+        </span>
+        <span class="item-dl">${DOWNLOAD_ICON} Download</span>
+      `;
+      listing.appendChild(row);
+    });
+  }
+
+  function render(){
+    renderFilters();
+    renderToolsFilter();
+    renderListing();
+  }
+
+  document.getElementById("search").addEventListener("input", (e) => {
+    searchTerm = e.target.value;
+    renderListing();
+  });
+
+  // ---------- theme toggle ----------
+  function applyTheme(theme, animate){
+    const icon = document.getElementById("theme-icon");
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("rohax-theme", theme);
+    if (animate){
+      icon.classList.add("spin");
+      setTimeout(() => {
+        icon.innerHTML = theme === "dark" ? SUN_ICON : MOON_ICON;
+        icon.classList.remove("spin");
+      }, 150);
+    } else {
+      icon.innerHTML = theme === "dark" ? SUN_ICON : MOON_ICON;
+    }
+  }
+  document.getElementById("theme-toggle").addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    applyTheme(current === "dark" ? "light" : "dark", true);
+  });
+  const savedTheme = localStorage.getItem("rohax-theme")
+    || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  applyTheme(savedTheme);
+
+  render();
+
+  // ---------- header shadow on scroll ----------
+  const headerEl = document.querySelector("header");
+  window.addEventListener("scroll", () => {
+    headerEl.classList.toggle("scrolled", window.scrollY > 8);
+  });
+</script>
+
+</body>
+</html>
