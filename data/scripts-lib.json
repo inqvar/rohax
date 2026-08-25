@@ -5,7 +5,6 @@
       "name": "__PLACEHOLDER_NAME_1__",
       "desc": "__PLACEHOLDER_DESC_1__",
       "tag": "asset",
-      "isNew": true,
       "updated": "__PLACEHOLDER_UPDATED_1__",
       "url": "__PLACEHOLDER_URL_1__"
     },
@@ -14,7 +13,6 @@
       "name": "__PLACEHOLDER_NAME_2__",
       "desc": "__PLACEHOLDER_DESC_2__",
       "tag": "plugin",
-      "isNew": false,
       "updated": "__PLACEHOLDER_UPDATED_2__",
       "url": "__PLACEHOLDER_URL_2__"
     },
@@ -23,7 +21,6 @@
       "name": "__PLACEHOLDER_NAME_3__",
       "desc": "__PLACEHOLDER_DESC_3__",
       "tag": "tool",
-      "isNew": false,
       "updated": "__PLACEHOLDER_UPDATED_3__",
       "url": "__PLACEHOLDER_URL_3__"
     },
@@ -32,7 +29,6 @@
       "name": "__PLACEHOLDER_NAME_4__",
       "desc": "__PLACEHOLDER_DESC_4__",
       "tag": "asset",
-      "isNew": false,
       "updated": "__PLACEHOLDER_UPDATED_4__",
       "url": "__PLACEHOLDER_URL_4__"
     },
@@ -41,7 +37,6 @@
       "name": "__PLACEHOLDER_NAME_5__",
       "desc": "__PLACEHOLDER_DESC_5__",
       "tag": "tool",
-      "isNew": true,
       "updated": "__PLACEHOLDER_UPDATED_5__",
       "url": "__PLACEHOLDER_URL_5__"
     }
@@ -52,7 +47,6 @@
       "name": "__PLACEHOLDER_EXECUTOR_NAME_1__",
       "desc": "__PLACEHOLDER_EXECUTOR_DESC_1__",
       "tag": "tool",
-      "isNew": true,
       "updated": "__PLACEHOLDER_EXECUTOR_UPDATED_1__",
       "url": "__PLACEHOLDER_EXECUTOR_URL_1__"
     },
@@ -61,7 +55,6 @@
       "name": "__PLACEHOLDER_EXECUTOR_NAME_2__",
       "desc": "__PLACEHOLDER_EXECUTOR_DESC_2__",
       "tag": "tool",
-      "isNew": false,
       "updated": "__PLACEHOLDER_EXECUTOR_UPDATED_2__",
       "url": "__PLACEHOLDER_EXECUTOR_URL_2__"
     }
