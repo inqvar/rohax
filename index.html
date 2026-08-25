@@ -265,13 +265,25 @@
   async function loadData(){
     try{
       const res = await fetch("data/scripts-lib.json");
+      if (!res.ok) throw new Error(`HTTP ${res.status} for data/scripts-lib.json`);
       const data = await res.json();
       ENTRIES = data.entries || [];
       EXECUTOR_ENTRIES = data.executors || [];
+      render();
     } catch (err){
       console.error("Failed to load data/scripts-lib.json", err);
+      renderFilters();
+      renderToolsFilter();
+      const listing = document.getElementById("listing");
+      const empty = document.getElementById("empty");
+      listing.style.display = "none";
+      empty.classList.add("show");
+      empty.innerHTML = `
+        <div class="glyph">⚠️</div>
+        <div class="title">Couldn't load listings</div>
+        <div>data/scripts-lib.json failed to load (${err.message}). If you're opening this file directly (file://), run a local server instead, e.g. <code>python3 -m http.server</code>. Otherwise check the file path/case and that the JSON is valid.</div>
+      `;
     }
-    render();
   }
   loadData();
 
