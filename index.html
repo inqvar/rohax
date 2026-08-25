@@ -61,7 +61,7 @@
   </div>
 
   <div class="stats-row">
-    <div class="stat"><span class="num" id="stat-count">__PLACEHOLDER_ENTRY_COUNT__</span><span class="label">items indexed</span></div>
+    <div class="stat"><span class="num" id="stat-count">0</span><span class="label">items indexed</span></div>
   </div>
 </section>
 
@@ -92,15 +92,15 @@
 
 <footer>
   <span>rohax.cc — __PLACEHOLDER_FOOTNOTE__</span>
-  <span>__PLACEHOLDER_ENTRY_COUNT__ items indexed</span>
+  <span id="footer-count">0 items indexed</span>
 </footer>
 
 <script>
   // ---------------------------------------------------------------
-  // Plugin/asset data now lives in data/scripts-lib.json — edit that
+  // Plugin/asset data now lives in data/lib.json — edit that
   // file to add, remove, or update listings. Nothing in this file
   // needs to change for content updates. See that file for the field
-  // reference (game, name, desc, tag, updated, url).
+  // reference (game, name, desc, tag, url).
   // Loaded via fetch(), so this page must be served over http(s)
   // (e.g. `python3 -m http.server`) rather than opened directly as a
   // local file:// — browsers block fetch() of local JSON otherwise.
@@ -115,8 +115,8 @@
   // Simple generic game glyphs (not official brand logos — swap in your own
   // licensed icon files here if you have them, e.g. GAME_ICONS.Roblox = '<img src="/icons/roblox.svg">')
   const GAME_ICONS = {
-    "Roblox": '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="9" width="7" height="7" transform="rotate(-12 6.5 12.5)"/><rect x="14" y="8" width="7" height="7" transform="rotate(18 17.5 11.5)"/></svg>',
-    "Minecraft": '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8" opacity="0.55"/><rect x="3" y="13" width="8" height="8" opacity="0.55"/><rect x="13" y="13" width="8" height="8"/></svg>',
+    "Roblox": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><rect x="8.5" y="9.5" width="2" height="2" rx="0.4" fill="currentColor" stroke="none"/><rect x="13.5" y="9.5" width="2" height="2" rx="0.4" fill="currentColor" stroke="none"/><path d="M9 15.5h6"/></svg>',
+    "Minecraft": '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 22 7.2 12 12.4 2 7.2Z"/><path d="M2 7.2 12 12.4V21L2 15.8Z" opacity="0.55"/><path d="M22 7.2 12 12.4V21L22 15.8Z" opacity="0.8"/></svg>',
   };
 
   // Icon for the standalone "Executors" tools filter
@@ -213,7 +213,6 @@
         </span>
         <span class="item-meta">
           <div class="game-name">${e.game}</div>
-          <div>${e.updated}</div>
         </span>
         <span class="item-dl">${DOWNLOAD_ICON} Download</span>
       `;
@@ -221,10 +220,17 @@
     });
   }
 
+  function updateItemCount(){
+    const total = ENTRIES.length + EXECUTOR_ENTRIES.length;
+    document.getElementById("stat-count").textContent = total;
+    document.getElementById("footer-count").textContent = `${total} item${total === 1 ? "" : "s"} indexed`;
+  }
+
   function render(){
     renderFilters();
     renderToolsFilter();
     renderListing();
+    updateItemCount();
   }
 
   document.getElementById("search").addEventListener("input", (e) => {
@@ -259,14 +265,14 @@
 
   async function loadData(){
     try{
-      const res = await fetch("data/scripts-lib.json");
-      if (!res.ok) throw new Error(`HTTP ${res.status} for data/scripts-lib.json`);
+      const res = await fetch("data/lib.json");
+      if (!res.ok) throw new Error(`HTTP ${res.status} for data/lib.json`);
       const data = await res.json();
       ENTRIES = data.entries || [];
       EXECUTOR_ENTRIES = data.executors || [];
       render();
     } catch (err){
-      console.error("Failed to load data/scripts-lib.json", err);
+      console.error("Failed to load data/lib.json", err);
       renderFilters();
       renderToolsFilter();
       const listing = document.getElementById("listing");
@@ -276,7 +282,7 @@
       empty.innerHTML = `
         <div class="glyph">⚠️</div>
         <div class="title">Couldn't load listings</div>
-        <div>data/scripts-lib.json failed to load (${err.message}). If you're opening this file directly (file://), run a local server instead, e.g. <code>python3 -m http.server</code>. Otherwise check the file path/case and that the JSON is valid.</div>
+        <div>data/lib.json failed to load (${err.message}). If you're opening this file directly (file://), run a local server instead, e.g. <code>python3 -m http.server</code>. Otherwise check the file path/case and that the JSON is valid.</div>
       `;
     }
   }
